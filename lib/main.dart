@@ -14,12 +14,7 @@ class HairBeauty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //initialRoute: AgendarCitaScreen.id, //Cal morado
-      initialRoute: CalendarioScreen.id,  //Cal Original
-      //initialRoute: ServiciosScreen.id, //Cal morado
-      //initialRoute: TrabajadoresScreen.id, //Cal Original
-      //initialRoute: UbicacionScreen.id, //Cal morado
-      //initialRoute: WelcomeScreen.id,
+      initialRoute: WelcomeScreen.id,
         routes: {
           AgendarCitaScreen.id: (context) => AgendarCitaScreen(),
           CalendarioScreen.id: (context) => CalendarioScreen(),

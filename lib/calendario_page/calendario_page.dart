@@ -8,6 +8,7 @@ import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 
 class CalendarioScreen extends StatefulWidget {
@@ -17,17 +18,16 @@ class CalendarioScreen extends StatefulWidget {
   _CalendarioScreenState createState() => _CalendarioScreenState();
 }
 
-class _CalendarioScreenState extends State<CalendarioScreen>
-
-
-    with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  Animation animation;
-
+class _CalendarioScreenState extends State<CalendarioScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    return MaterialApp(
+    return Scaffold(
+      body: SfCalendar(
+        view: CalendarView.month,
+      ),
+    );
+    /*return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -43,7 +43,7 @@ class _CalendarioScreenState extends State<CalendarioScreen>
         const Locale('en'),
       ],
       home: HomePage(),
-    );
+    );*/
   }
 }
 
