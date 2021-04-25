@@ -1,0 +1,36 @@
+name: hair_beauty
+description: A new Flutter application.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations: # Add this line
+    sdk: flutter         # Add this line
+
+
+  cupertino_icons: ^1.0.2
+  google_fonts: ^2.0.0
+  animated_text_kit: ^4.2.0
+  responsive_grid: ^2.0.0
+  calendar_timeline: ^0.7.1
+  table_calendar: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - imagen/
+
+
+
+
