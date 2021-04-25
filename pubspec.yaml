@@ -21,6 +21,8 @@ dependencies:
   calendar_timeline: ^0.7.1
   table_calendar: ^3.0.0
   syncfusion_flutter_calendar: ^19.1.57
+  multiselect_formfield: ^0.1.6
+  datetime_picker_formfield: ^2.0.0
 
 dev_dependencies:
   flutter_test:

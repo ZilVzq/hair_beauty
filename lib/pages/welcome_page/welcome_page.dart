@@ -12,9 +12,9 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
 
-  int sizeBottomWelcome = 4;
+  int sizeBottomWelcome = 6;
 
-  Container welcomeOption(String texto, Color color, double radius, double fontsize, double height, double width, ) {
+  Container welcomeOption(String texto, Color color, double radius, double fontsize, double height, double width, Color fontColor ) {
     return Container(
       width: width,
       height: height,
@@ -30,7 +30,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             fontStyle: FontStyle.italic,
             fontSize: fontsize,
             textStyle: TextStyle(
-              color: Color(0xffffffff),
+              color: fontColor,
+
             ),
           ),
         ),
@@ -63,7 +64,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             children: [
               Expanded(
                 flex: 1,
-                child: welcomeOption("Mersy`s", Color(0xff9a9ce9), 0, 30, sizeForBottom, unitWidth * 100),
+                child: welcomeOption("Mersy`s", Color(0xff000000), 0, 40, sizeForBottom , unitWidth * 100, Color(0xffa2b9ed)),
               ),
               Expanded(
                 flex: sizeBottomWelcome,
@@ -72,31 +73,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     Row(
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 10, unitWidth * 2.5, unitHeight * 0),
+                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 12, unitWidth * 2.5, unitHeight * 0),
                           child: welcomeOption(
-                              "Agendar", Color(0xffaeeee0), 35.0, 30, unitHeight * 10, unitWidth * 45
+                              "Agendar Cita", Color(0xffa3dcef), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 10, unitWidth * 2.5, unitHeight * 0),
+                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 12, unitWidth * 2.5, unitHeight * 0),
                           child: welcomeOption(
-                              "Agendar", Color(0xffaeeee0), 35.0, 30, unitHeight * 10, unitWidth * 45
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
-                          child: welcomeOption(
-                              "Agendar", Color(0xffaeeee0), 35.0, 30, unitHeight * 10, unitWidth * 45
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
-                          child: welcomeOption(
-                              "Agendar", Color(0xffaeeee0), 35.0, 30, unitHeight * 10, unitWidth * 45
+                              "Calendario", Color(0xffa2b9ed), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
                           ),
                         ),
                       ],
@@ -106,13 +91,29 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         Padding(
                           padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
                           child: welcomeOption(
-                              "Agendar", Color(0xffaeeee0), 35.0, 30, unitHeight * 10, unitWidth * 45
+                              "Servicios", Color(0xffaeeee0), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
                           child: welcomeOption(
-                              "Agendar", Color(0xffaeeee0), 35.0, 30, unitHeight * 10, unitWidth * 45
+                              "Trabajadores", Color(0xff9a9ce9), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
+                          child: welcomeOption(
+                              "Ubicación", Color(0xff62decd), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
+                          child: welcomeOption(
+                              "Historial", Color(0xff7c78f5), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
                           ),
                         ),
                       ],
