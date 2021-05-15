@@ -16,7 +16,7 @@ class HairBeauty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: WelcomeScreen.id,
+      initialRoute: AgendarCitaScreen.id,
         routes: {
           AgendarCitaScreen.id: (context) => AgendarCitaScreen(),
           ResumePageScreen.id: (context) => ResumePageScreen(),

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hair_beauty/pages/agendar_cita_page/agendar_cita_page.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = "welcome_screen";
@@ -72,16 +73,32 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 12, unitWidth * 2.5, unitHeight * 0),
-                          child: welcomeOption(
-                              "Agendar Cita", Color(0xffa3dcef), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              AgendarCitaScreen.id,
+                            );
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 12, unitWidth * 2.5, unitHeight * 0),
+                            child: welcomeOption(
+                                "Agendar Cita", Color(0xffa3dcef), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                            ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 12, unitWidth * 2.5, unitHeight * 0),
-                          child: welcomeOption(
-                              "Calendario", Color(0xffa2b9ed), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              AgendarCitaScreen.id,
+                            );
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 12, unitWidth * 2.5, unitHeight * 0),
+                            child: welcomeOption(
+                                "Calendario", Color(0xffa2b9ed), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                            ),
                           ),
                         ),
                       ],
@@ -110,10 +127,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               "Ubicación", Color(0xff62decd), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
-                          child: welcomeOption(
-                              "Historial", Color(0xff7c78f5), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              AgendarCitaScreen.id,
+                            );
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
+                            child: welcomeOption(
+                                "Historial", Color(0xff7c78f5), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                            ),
                           ),
                         ),
                       ],

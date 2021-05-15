@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hair_beauty/entities/service.dart';
 import 'package:hair_beauty/entities/worker.dart';
 import 'package:hair_beauty/pages/agendar_cita_page/widgets/reume_page.dart';
+import 'package:hair_beauty/pages/welcome_page/welcome_page.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
@@ -43,11 +44,12 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Registrarse'),
+          backgroundColor: Color(0xff7c78f5),
+          title: Center(child: Text('Agendar Cita')),
         ),
         body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.all(60.0),
+            margin: EdgeInsets.all(40.0),
             child: Form(
               key: keyForm,
               child: formUI(),
@@ -62,14 +64,14 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 7),
+          padding: EdgeInsets.only(left: 0.0, top: 20.0, right: 0.0, bottom: 5.0) ,
           child: Card(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Seleccionar Fecha y Hora",
-                  textAlign: TextAlign.start,
+                  textAlign: TextAlign.center,
                 ),
                 DateTimeField(
                   format: format,
@@ -77,7 +79,7 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                   onShowPicker: (context, currentValue) async {
                     final date = await showDatePicker(
                         context: context,
-                        firstDate: DateTime(1900),
+                        firstDate: DateTime(2020),
                         initialDate: currentValue ?? DateTime.now(),
                         lastDate: DateTime(2100));
                     if (date != null) {
@@ -97,7 +99,7 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 7),
+          padding: EdgeInsets.only(left: 0.0, top: 1.0, right: 0.0, bottom: 1.0),
           child: Card(
             child: MultiSelectFormField(
               title: Text("Servicios"),
@@ -128,11 +130,11 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
           ),
         ),
         Container(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.only(left: 30.0, top: 1.0, right: 30.0, bottom: 1.0),
           child: Text(_myActivitiesResult),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 7),
+          padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 1.0),
           child: Card(
             child: MultiSelectFormField(
               title: Text("Trabajadores"),
@@ -170,24 +172,51 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
             save();
           },
           child: Container(
-            margin: EdgeInsets.all(30.0),
+            margin: EdgeInsets.only(left: 30.0, top: 1.0, right: 30.0, bottom: 20.0),
             alignment: Alignment.center,
             decoration: ShapeDecoration(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0)),
               gradient: LinearGradient(colors: [
-                Color(0xFF0EDED2),
-                Color(0xFF03A0FE),
+                Color(0xff7c78f5),
+                Color(0xffa2b9ed),
               ], begin: Alignment.topLeft, end: Alignment.bottomRight),
             ),
             child: Text("Guardar",
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 22,
                     fontWeight: FontWeight.w500)),
-            padding: EdgeInsets.only(top: 16, bottom: 16),
+            padding: EdgeInsets.only(left: 0.0, top: 16.0, right: 0.0, bottom: 16.0),
           ),
         ),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              WelcomeScreen.id,
+            );
+          },
+          child: Container(
+            margin: EdgeInsets.only(left: 30.0, top: 1.0, right: 30.0, bottom: 1.0),
+            alignment: Alignment.center,
+            decoration: ShapeDecoration(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0)),
+              gradient: LinearGradient(colors: [
+                Color(0xff7c78f5),
+                Color(0xffa2b9ed),
+              ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+            ),
+            child: Text("Cancelar",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500)),
+            padding: EdgeInsets.only(left: 0.0, top: 16.0, right: 0.0, bottom: 16.0),
+          ),
+        ),
+
       ],
     );
   }
