@@ -1,8 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hair_beauty/pages/agendar_cita_page/agendar_cita_page.dart';
+import 'package:hair_beauty/pages/calendario_page/calendario_page.dart';
+import 'package:hair_beauty/pages/servicios_page/servicios_page.dart';
+import 'package:hair_beauty/pages/ubicacion_page/ubicacion_page.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = "welcome_screen";
@@ -91,7 +93,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           onTap: () {
                             Navigator.pushNamed(
                               context,
-                              AgendarCitaScreen.id,
+                              CalendarioScreen.id,
                             );
                           },
                           child: Padding(
@@ -105,26 +107,50 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                     Row(
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
-                          child: welcomeOption(
-                              "Servicios", Color(0xffaeeee0), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              ServiciosScreen.id,
+                            );
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
+                            child: welcomeOption(
+                                "Servicios", Color(0xffaeeee0), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                            ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
-                          child: welcomeOption(
-                              "Trabajadores", Color(0xff9a9ce9), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              AgendarCitaScreen.id,
+                            );
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
+                            child: welcomeOption(
+                                "Trabajadores", Color(0xff9a9ce9), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                            ),
                           ),
                         ),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
-                          child: welcomeOption(
-                              "Ubicación", Color(0xff62decd), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              UbicacionScreen.id,
+                            );
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),
+                            child: welcomeOption(
+                                "Ubicación", Color(0xff62decd), 35.0, 23, unitHeight * 10, unitWidth * 45, Color(0xffffffff)
+                            ),
                           ),
                         ),
                         GestureDetector(

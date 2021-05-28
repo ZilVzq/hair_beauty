@@ -16,6 +16,7 @@ class _CalendarioScreenState extends State<CalendarioScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Padding(
           padding: const EdgeInsets.only(left: 0.0, top: 20.0, right: 0.0),
@@ -49,6 +50,9 @@ class _CalendarioScreenState extends State<CalendarioScreen> {
             ),
           ),
         ),
+      ),
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
       ),
     );
   }

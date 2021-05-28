@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "67432312708",
+    "project_id": "estetica-mersys",
+    "storage_bucket": "estetica-mersys.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67432312708:android:b36ca50cbba2716c5b37d1",
+        "android_client_info": {
+          "package_name": "mx.com.jquevedo.hair_beauty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67432312708-62160r6f81bc6nm3ksjuv3h3e45a17fm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmCtXUzZ_7vU6bbiFv1y3fMOl1vRV660o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67432312708-62160r6f81bc6nm3ksjuv3h3e45a17fm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

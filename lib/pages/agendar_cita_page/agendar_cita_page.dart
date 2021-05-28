@@ -21,12 +21,17 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
   List _selectedWorkers;
   String _myActivitiesResult;
   var servicesJson = [
-    Service(serviceId: 1, nombre: "Corte", precio: 10.11).toJson(),
-    Service(serviceId: 2, nombre: "Rapado", precio: 20.11).toJson()
+    Service(serviceId: 1, nombre: "Corte Caballero", precio: 10.11).toJson(),
+    Service(serviceId: 2, nombre: "Corte Dama", precio: 10.11).toJson(),
+    Service(serviceId: 3, nombre: "Manicura", precio: 10.11).toJson(),
+    Service(serviceId: 4, nombre: "Pedicura", precio: 10.11).toJson(),
+    Service(serviceId: 5, nombre: "Depilacion", precio: 20.11).toJson()
   ];
   var workersJson = [
-    Worker(workerId: 1, nombre: "Nombre", apellido: "Apellido").toJson(),
-    Worker(workerId: 2, nombre: "Nombre", apellido: "Apellido").toJson()
+    Worker(workerId: 1, nombre: "Simon", apellido: "Sanchez").toJson(),
+    Worker(workerId: 2, nombre: "Meche", apellido: "Urquiza").toJson(),
+    Worker(workerId: 3, nombre: "Raquel", apellido: "Perez").toJson(),
+    Worker(workerId: 4, nombre: "Rocio", apellido: "Luna").toJson()
   ];
 
   @override
@@ -42,6 +47,7 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xff7c78f5),
@@ -56,6 +62,9 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
             ),
           ),
         ),
+      ),
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
       ),
     );
   }
@@ -179,7 +188,7 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                   borderRadius: BorderRadius.circular(30.0)),
               gradient: LinearGradient(colors: [
                 Color(0xff7c78f5),
-                Color(0xffa2b9ed),
+                Color(0xff7c78f5),
               ], begin: Alignment.topLeft, end: Alignment.bottomRight),
             ),
             child: Text("Guardar",
@@ -205,7 +214,7 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                   borderRadius: BorderRadius.circular(30.0)),
               gradient: LinearGradient(colors: [
                 Color(0xff7c78f5),
-                Color(0xffa2b9ed),
+                Color(0xff7c78f5),
               ], begin: Alignment.topLeft, end: Alignment.bottomRight),
             ),
             child: Text("Cancelar",

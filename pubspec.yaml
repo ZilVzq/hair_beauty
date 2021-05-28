@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   flutter_localizations: # Add this line
     sdk: flutter         # Add this line
 
@@ -23,6 +24,8 @@ dependencies:
   syncfusion_flutter_calendar: ^19.1.57
   multiselect_formfield: ^0.1.6
   datetime_picker_formfield: ^2.0.0
+  permission: ^0.1.7
+  permission_handler: ^7.1.0
 
 dev_dependencies:
   flutter_test:
