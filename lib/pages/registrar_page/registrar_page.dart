@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/material/date_picker.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -23,6 +25,7 @@ class RegistrarScreen extends StatefulWidget {
 
 class _RegistrarScreenState extends State<RegistrarScreen> {
 
+  final _auth = FirebaseAuth.instance;
   String _nombre = '';
   String _apellido = '';
   String _telefono = '';
@@ -277,11 +280,24 @@ class _RegistrarScreenState extends State<RegistrarScreen> {
 
   Widget _confirmarRegistro() {
     return GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(
-            context,
-            LoginScreen.id,
-          );
+        onTap: () async {
+          try {
+            final newUser =  await _auth.createUserWithEmailAndPassword(email: _correo, password: _pass);
+            if (newUser != null) {
+              Navigator.pushNamed(
+                context,
+                LoginScreen.id,
+              );
+            }
+          } catch (e){
+            AlertDialog(
+              title: Text("Ups. Algo salió mal!"),
+              content: Text("Favor de intentarlo más tarde"),
+              actions: [
+                CupertinoDialogAction(child: Text("OK"))
+              ],
+            );
+          }
         },
         child: Container(
           margin: EdgeInsets.only(left: 30.0, top: 10.0, right: 30.0, bottom: 10.0),

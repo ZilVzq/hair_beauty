@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hair_beauty/pages/login_page/widgets/LoginProvider.dart';
 import 'package:hair_beauty/pages/registrar_page/registrar_page.dart';
 import 'package:hair_beauty/pages/welcome_page/welcome_page.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = "login_screen";
@@ -11,6 +14,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  final _auth = FirebaseAuth.instance;
+
+  String _email;
+  String _password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,8 +131,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 icon: Icon(Icons.alternate_email, color: Color(0xff7c78f5)),
                 hintText: 'ejemplo@correo.com',
                 labelText: 'Correo electronico',
-                counterText: snapshot.data
+                counterText: snapshot.data,
               ),
+              onChanged: (value){
+                _email = value;
+              },
             ),
           );
         },
@@ -144,6 +156,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 icon: Icon(Icons.lock_outline_rounded, color: Color(0xff7c78f5)),
                 labelText: 'Contraseña',
               ),
+              onChanged: (value) {
+                _password = value;
+              },
             ),
           );
         },
@@ -162,11 +177,35 @@ class _LoginScreenState extends State<LoginScreen> {
       elevation: 0.0,
       color: Color(0xff7c78f5),
       textColor: Colors.white,
-      onPressed: (){
-        Navigator.pushNamed(
-          context,
-          WelcomeScreen.id,
-        );
+      onPressed: () async{
+        //Provider.of<LoginProvider>(context).login();
+        try{
+          final currentUser = await _auth.signInWithEmailAndPassword(email: _email, password: _password);
+          if(currentUser != null) {
+            Navigator.pushNamed(
+              context,
+              WelcomeScreen.id,
+            );
+          } else {
+            AlertDialog(
+              title: Text("Credenciales incorrectas"),
+              content: Text("Usuario o contraseña incorrectas"),
+              actions: [
+                CupertinoDialogAction(child: Text("OK"))
+              ],
+            );
+          }
+        } catch (e) {
+          print(e);
+          AlertDialog(
+            title: Text("Ups. Algo salió mal!"),
+            content: Text("Favor de intentarlo más tarde"),
+            actions: [
+              CupertinoDialogAction(child: Text("OK"))
+            ],
+          );
+        }
+
       },
     );
 
@@ -185,6 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
       color: Color(0xff7c78f5),
       textColor: Colors.white,
       onPressed: (){
+
         Navigator.pushNamed(
           context,
           RegistrarScreen.id,

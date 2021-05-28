@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hair_beauty/pages/agendar_cita_page/agendar_cita_page.dart';
@@ -11,11 +12,14 @@ import 'package:hair_beauty/pages/welcome_page/welcome_page.dart';
 import 'package:hair_beauty/pages/registrar_page/registrar_page.dart';
 
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(HairBeauty());
 }
 
 class HairBeauty extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
 
