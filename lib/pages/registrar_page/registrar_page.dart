@@ -1,21 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/material/date_picker.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:hair_beauty/entities/service.dart';
-import 'package:hair_beauty/entities/worker.dart';
-import 'package:hair_beauty/pages/agendar_cita_page/agendar_cita_page.dart';
-import 'package:hair_beauty/pages/agendar_cita_page/widgets/reume_page.dart';
 import 'package:hair_beauty/pages/login_page/login.dart';
-import 'package:hair_beauty/pages/welcome_page/welcome_page.dart';
-import 'package:multiselect_formfield/multiselect_formfield.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:intl/intl.dart';
-import 'package:flutter/foundation.dart';
-import 'package:intl/intl.dart';
 
 class RegistrarScreen extends StatefulWidget {
   static String id = "registrar_screen";
@@ -24,6 +12,8 @@ class RegistrarScreen extends StatefulWidget {
 }
 
 class _RegistrarScreenState extends State<RegistrarScreen> {
+
+  final _firestore = FirebaseFirestore.instance;
 
   final _auth = FirebaseAuth.instance;
   String _nombre = '';
@@ -284,6 +274,15 @@ class _RegistrarScreenState extends State<RegistrarScreen> {
           try {
             final newUser =  await _auth.createUserWithEmailAndPassword(email: _correo, password: _pass);
             if (newUser != null) {
+              await _firestore.collection("users").add({
+                "alias" : _alias,
+                "apellido": _apellido,
+                "email": _correo,
+                "fechaNac": _nac,
+                "nombre": _nombre,
+                "sexo": _generoSleccionado,
+                "telefono": _telefono
+              });
               Navigator.pushNamed(
                 context,
                 LoginScreen.id,
