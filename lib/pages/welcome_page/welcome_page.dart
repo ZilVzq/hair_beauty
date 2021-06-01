@@ -21,8 +21,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
-    workersProvider.getWorkers();
-    servicesProvider.getServices();
+    if(workersProvider.workersList.length == 0){
+      workersProvider.getWorkers();
+    }
+    if(servicesProvider.servicesList.length == 0){
+      servicesProvider.getServices();
+    }
   }
 
   int sizeBottomWelcome = 6;
