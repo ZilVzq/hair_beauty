@@ -1,12 +1,13 @@
 import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hair_beauty/pages/agendar_cita_page/agendar_cita_page.dart';
 import 'package:hair_beauty/pages/calendario_page/calendario_page.dart';
 import 'package:hair_beauty/pages/servicios_page/servicios_page.dart';
 import 'package:hair_beauty/pages/ubicacion_page/ubicacion_page.dart';
+import 'package:hair_beauty/pages/welcome_page/user_data_provider.dart';
+import 'package:hair_beauty/providers/services_provider.dart';
+import 'package:hair_beauty/providers/workers_provider.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = "welcome_screen";
@@ -17,28 +18,12 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
 
-  final _firebase = FirebaseFirestore.instance;
-  final _auth = FirebaseAuth.instance;
-
-  var userData;
-
   @override
   void initState() {
     super.initState();
-    print("El usuario logeado es: " + _auth.currentUser.email);
+    workersProvider.getWorkers();
+    servicesProvider.getServices();
   }
-
-
-    readItems() async {
-      CollectionReference _productss = _firebase.collection('users');
-      var algo = await _productss.where("email", isEqualTo: _auth.currentUser.email).get();
-      var elements = algo.docs;
-      for(var element in elements){
-        print(element.data());
-      }
-    }
-
-
 
   int sizeBottomWelcome = 6;
 
@@ -94,6 +79,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 flex: 1,
                 child: welcomeOption("Mersy`s", Color(0xff000000), 0, 40, sizeForBottom , unitWidth * 100, Color(0xffa2b9ed)),
               ),
+              UserDataProvider(),
               Expanded(
                 flex: sizeBottomWelcome,
                 child: Column(
@@ -180,11 +166,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            /*Navigator.pushNamed(
+                            Navigator.pushNamed(
                               context,
                               AgendarCitaScreen.id,
-                            );*/
-                            readItems();
+                            );
                           },
                           child: Padding(
                             padding: EdgeInsets.fromLTRB(unitWidth * 2.5, unitHeight * 5, unitWidth * 2.5, unitHeight * 0),

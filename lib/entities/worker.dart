@@ -5,7 +5,9 @@ class Worker{
   int workerId;
   String nombre;
   String apellido;
-  List<Service> servicios;
+  List<dynamic> servicios;
+  Service servicio;
+  int servicioId;
 
   Worker({this.workerId, this.nombre, this.apellido});
 
@@ -13,7 +15,15 @@ class Worker{
     'workerId': workerId.toString(),
     'nombre': nombre,
     'apellido': apellido,
-    'nombreCompleto': nombre + ' ' + apellido
+    'servicio': servicio,
+    'servicioId': servicioId,
   };
+
+  Worker.fromJson(Map<String, dynamic> json) {
+    workerId = json['workerId'];
+    nombre = json['nombre'];
+    apellido = json['apellido'];
+    servicios = json['servicios'];
+  }
 
 }

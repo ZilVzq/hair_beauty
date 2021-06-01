@@ -3,10 +3,11 @@ import 'package:hair_beauty/entities/service.dart';
 import 'package:hair_beauty/entities/worker.dart';
 import 'package:hair_beauty/pages/agendar_cita_page/widgets/reume_page.dart';
 import 'package:hair_beauty/pages/welcome_page/welcome_page.dart';
+import 'package:hair_beauty/providers/services_provider.dart';
+import 'package:hair_beauty/providers/workers_provider.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
-import 'dart:convert';
 
 class AgendarCitaScreen extends StatefulWidget {
   static String id = "agendar_cita_screen";
@@ -20,23 +21,30 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
   List _selectedServices;
   List _selectedWorkers;
   String _myActivitiesResult;
-  var servicesJson = [
-    Service(serviceId: 1, nombre: "Corte Caballero", precio: 10.11).toJson(),
-    Service(serviceId: 2, nombre: "Corte Dama", precio: 10.11).toJson(),
-    Service(serviceId: 3, nombre: "Manicura", precio: 10.11).toJson(),
-    Service(serviceId: 4, nombre: "Pedicura", precio: 10.11).toJson(),
-    Service(serviceId: 5, nombre: "Depilacion", precio: 20.11).toJson()
-  ];
-  var workersJson = [
-    Worker(workerId: 1, nombre: "Simon", apellido: "Sanchez").toJson(),
-    Worker(workerId: 2, nombre: "Meche", apellido: "Urquiza").toJson(),
-    Worker(workerId: 3, nombre: "Raquel", apellido: "Perez").toJson(),
-    Worker(workerId: 4, nombre: "Rocio", apellido: "Luna").toJson()
-  ];
+  var servicesJson = [];
+  var workersJson = [];
 
   @override
   void initState() {
     super.initState();
+    for(Service service in servicesProvider.servicesList){
+      servicesJson.add(service.toJson());
+    }
+    List<Worker> workers = new List();
+    for(Worker worker in workersProvider.workersList){
+      Worker tempWorker = worker;
+      for(var service in tempWorker.servicios){
+        if(tempWorker.servicios.contains(service)){
+          tempWorker.servicio = servicesProvider.servicesList.firstWhere((element) => element.serviceId == service);
+          tempWorker.servicioId = service;
+          workers.add(tempWorker);
+
+        }
+      }
+    }
+    for(Worker worker in workers){
+      workersJson.add(worker.toJson());
+    }
     _selectedServices = [];
     _selectedWorkers = [];
     _myActivitiesResult = '';

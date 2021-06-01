@@ -1,11 +1,8 @@
-import 'package:hair_beauty/entities/worker.dart';
-
 class Service{
 
   int serviceId;
   String nombre;
-  double precio;
-  List<Worker> workers;
+  int precio;
 
   Service({this.serviceId, this.nombre, this.precio});
 
@@ -14,5 +11,11 @@ class Service{
     'nombre': nombre,
     'precio': precio,
   };
+
+  Service.fromJson(Map<String, dynamic> json) {
+    serviceId = json['serviceId'];
+    nombre = json['nombre'];
+    precio = json['precio'];
+  }
 
 }
