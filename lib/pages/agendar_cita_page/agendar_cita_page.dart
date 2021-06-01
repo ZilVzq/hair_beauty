@@ -227,7 +227,7 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
         ResumePageScreen.id,
         arguments: ResumePageScreen(
           workers: _selectedWorkersServices,
-          dateSelected: dateSelected,
+          dateSelected: dateSelected.toString(),
         ),
       );
     }

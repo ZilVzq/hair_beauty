@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 class ResumePageScreen extends StatefulWidget {
   static String id = "resume_page";
   final List<Worker> workers;
-  final dateSelected;
+  final String dateSelected;
 
   ResumePageScreen({@required this.workers, @required this.dateSelected});
 
@@ -34,8 +34,10 @@ class _ResumePageScreenState extends State<ResumePageScreen> {
     final ResumePageScreen args =
     ModalRoute.of(context).settings.arguments as ResumePageScreen;
     List<Worker> workers = args.workers;
+    String dateSelected = args.dateSelected.substring(0, 19);
 
     print(workers.length);
+    print(dateSelected);
 
 
 
