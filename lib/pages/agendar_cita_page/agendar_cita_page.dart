@@ -18,35 +18,36 @@ class AgendarCitaScreen extends StatefulWidget {
 
 class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
   final format = DateFormat("yyyy-MM-dd HH:mm");
-  List _selectedServices;
-  List _selectedWorkers;
+  List<Worker> _selectedWorkersServices = new List();
+  List<Worker> workers = new List();
   String _myActivitiesResult;
   var servicesJson = [];
-  var workersJson = [];
+  var dateSelected;
 
   @override
   void initState() {
     super.initState();
-    for(Service service in servicesProvider.servicesList){
-      servicesJson.add(service.toJson());
-    }
-    List<Worker> workers = new List();
-    for(Worker worker in workersProvider.workersList){
-      Worker tempWorker = worker;
-      for(var service in tempWorker.servicios){
-        if(tempWorker.servicios.contains(service)){
-          tempWorker.servicio = servicesProvider.servicesList.firstWhere((element) => element.serviceId == service);
-          tempWorker.servicioId = service;
-          workers.add(tempWorker);
 
+    int cont = 0;
+    for (Worker worker in workersProvider.workersList) {
+      for (var service in worker.servicios) {
+        if (worker.servicios.contains(service)) {
+          Worker tempWorker = new Worker(
+              workerId: worker.workerId,
+              nombre: worker.nombre,
+              apellido: worker.apellido);
+          Service serviceTemp = servicesProvider.servicesList
+              .firstWhere((element) => element.serviceId == service);
+          tempWorker.servicio = serviceTemp;
+          tempWorker.servicioId = service;
+          tempWorker.idTupla = ++cont;
+          workers.add(tempWorker);
         }
       }
     }
-    for(Worker worker in workers){
-      workersJson.add(worker.toJson());
+    for (Worker worker in workers) {
+      servicesJson.add(worker.toJson());
     }
-    _selectedServices = [];
-    _selectedWorkers = [];
     _myActivitiesResult = '';
   }
 
@@ -81,7 +82,8 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(left: 0.0, top: 20.0, right: 0.0, bottom: 5.0) ,
+          padding:
+              EdgeInsets.only(left: 0.0, top: 20.0, right: 0.0, bottom: 5.0),
           child: Card(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,8 +107,10 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                         initialTime: TimeOfDay.fromDateTime(
                             currentValue ?? DateTime.now()),
                       );
+                      dateSelected = DateTimeField.combine(date, time);
                       return DateTimeField.combine(date, time);
                     } else {
+                      dateSelected = currentValue;
                       return currentValue;
                     }
                   },
@@ -116,7 +120,8 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 0.0, top: 1.0, right: 0.0, bottom: 1.0),
+          padding:
+              EdgeInsets.only(left: 0.0, top: 1.0, right: 0.0, bottom: 1.0),
           child: Card(
             child: MultiSelectFormField(
               title: Text("Servicios"),
@@ -130,16 +135,19 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                 }
               },
               dataSource: servicesJson,
-              textField: 'nombre',
-              valueField: 'serviceId',
+              textField: 'infoToShow',
+              valueField: 'idTupla',
               okButtonLabel: 'OK',
               cancelButtonLabel: 'CANCEL',
               required: true,
               onSaved: (value) {
                 if (value != null) {
                   setState(() {
-                    _selectedServices = value;
-                    print(_selectedServices);
+                    for (var selectedTupla in value) {
+                      Worker worker = workers.firstWhere(
+                          (element) => element.idTupla == selectedTupla);
+                      _selectedWorkersServices.add(worker);
+                    }
                   });
                 }
               },
@@ -147,38 +155,9 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
           ),
         ),
         Container(
-          padding: EdgeInsets.only(left: 30.0, top: 1.0, right: 30.0, bottom: 1.0),
+          padding:
+              EdgeInsets.only(left: 30.0, top: 1.0, right: 30.0, bottom: 1.0),
           child: Text(_myActivitiesResult),
-        ),
-        Padding(
-          padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 1.0),
-          child: Card(
-            child: MultiSelectFormField(
-              title: Text("Trabajadores"),
-              autovalidate: false,
-              validator: (value) {
-                if (value == null || value.length == 0) {
-                  return 'Por favor seleccione uno o más servicios';
-                } else {
-                  return null;
-                }
-              },
-              dataSource: workersJson,
-              textField: 'nombreCompleto',
-              valueField: 'workerId',
-              okButtonLabel: 'OK',
-              cancelButtonLabel: 'CANCEL',
-              required: true,
-              onSaved: (value) {
-                if (value != null) {
-                  setState(() {
-                    _selectedWorkers = value;
-                    print(_selectedWorkers);
-                  });
-                }
-              },
-            ),
-          ),
         ),
         Container(
           padding: EdgeInsets.all(16),
@@ -189,7 +168,8 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
             save();
           },
           child: Container(
-            margin: EdgeInsets.only(left: 30.0, top: 1.0, right: 30.0, bottom: 20.0),
+            margin: EdgeInsets.only(
+                left: 30.0, top: 1.0, right: 30.0, bottom: 20.0),
             alignment: Alignment.center,
             decoration: ShapeDecoration(
               shape: RoundedRectangleBorder(
@@ -204,7 +184,8 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                     color: Colors.white,
                     fontSize: 22,
                     fontWeight: FontWeight.w500)),
-            padding: EdgeInsets.only(left: 0.0, top: 16.0, right: 0.0, bottom: 16.0),
+            padding:
+                EdgeInsets.only(left: 0.0, top: 16.0, right: 0.0, bottom: 16.0),
           ),
         ),
         GestureDetector(
@@ -215,7 +196,8 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
             );
           },
           child: Container(
-            margin: EdgeInsets.only(left: 30.0, top: 1.0, right: 30.0, bottom: 1.0),
+            margin:
+                EdgeInsets.only(left: 30.0, top: 1.0, right: 30.0, bottom: 1.0),
             alignment: Alignment.center,
             decoration: ShapeDecoration(
               shape: RoundedRectangleBorder(
@@ -230,10 +212,10 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                     color: Colors.white,
                     fontSize: 22,
                     fontWeight: FontWeight.w500)),
-            padding: EdgeInsets.only(left: 0.0, top: 16.0, right: 0.0, bottom: 16.0),
+            padding:
+                EdgeInsets.only(left: 0.0, top: 16.0, right: 0.0, bottom: 16.0),
           ),
         ),
-
       ],
     );
   }
@@ -244,8 +226,8 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
         context,
         ResumePageScreen.id,
         arguments: ResumePageScreen(
-            services: _selectedServices,
-            workers: _selectedWorkers
+          workers: _selectedWorkersServices,
+          dateSelected: dateSelected,
         ),
       );
     }

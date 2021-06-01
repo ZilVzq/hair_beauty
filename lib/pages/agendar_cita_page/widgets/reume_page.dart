@@ -7,10 +7,10 @@ import 'package:intl/intl.dart';
 
 class ResumePageScreen extends StatefulWidget {
   static String id = "resume_page";
-  final List<Service> services;
   final List<Worker> workers;
+  final dateSelected;
 
-  ResumePageScreen({@required this.services, @required this.workers});
+  ResumePageScreen({@required this.workers, @required this.dateSelected});
 
   @override
   _ResumePageScreenState createState() => _ResumePageScreenState();
@@ -33,10 +33,8 @@ class _ResumePageScreenState extends State<ResumePageScreen> {
     var unitHeight = media.size.height / 100;
     final ResumePageScreen args =
     ModalRoute.of(context).settings.arguments as ResumePageScreen;
-    List<Service> services = args.services;
     List<Worker> workers = args.workers;
 
-    print(services.length);
     print(workers.length);
 
 

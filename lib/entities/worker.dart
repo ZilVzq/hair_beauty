@@ -2,6 +2,7 @@ import 'package:hair_beauty/entities/service.dart';
 
 class Worker{
 
+  int idTupla;
   int workerId;
   String nombre;
   String apellido;
@@ -17,6 +18,8 @@ class Worker{
     'apellido': apellido,
     'servicio': servicio,
     'servicioId': servicioId,
+    'infoToShow': "${servicio.nombre} | $nombre $apellido",
+    'idTupla': idTupla
   };
 
   Worker.fromJson(Map<String, dynamic> json) {
