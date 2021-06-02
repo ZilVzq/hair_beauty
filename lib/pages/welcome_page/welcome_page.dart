@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hair_beauty/pages/agendar_cita_page/agendar_cita_page.dart';
 import 'package:hair_beauty/pages/calendario_page/calendario_page.dart';
+import 'package:hair_beauty/pages/historial_page/historial_page.dart';
 import 'package:hair_beauty/pages/servicios_page/servicios_page.dart';
 import 'package:hair_beauty/pages/ubicacion_page/ubicacion_page.dart';
 import 'package:hair_beauty/pages/welcome_page/user_data_provider.dart';
@@ -172,7 +173,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           onTap: () {
                             Navigator.pushNamed(
                               context,
-                              AgendarCitaScreen.id,
+                              HistorialPageScreen.id,
                             );
                           },
                           child: Padding(

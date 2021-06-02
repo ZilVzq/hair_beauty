@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hair_beauty/pages/agendar_cita_page/agendar_cita_page.dart';
 import 'package:hair_beauty/pages/agendar_cita_page/widgets/reume_page.dart';
 import 'package:hair_beauty/pages/calendario_page/calendario_page.dart';
+import 'package:hair_beauty/pages/historial_page/historial_page.dart';
 import 'package:hair_beauty/pages/login_page/login.dart';
 import 'package:hair_beauty/pages/servicios_page/servicios_page.dart';
 import 'package:hair_beauty/pages/trabajadores_page/trabajadores_page.dart';
@@ -35,7 +36,8 @@ class HairBeauty extends StatelessWidget {
         UbicacionScreen.id: (context) => UbicacionScreen(),
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
-        RegistrarScreen.id: (context) => RegistrarScreen()
+        RegistrarScreen.id: (context) => RegistrarScreen(),
+        HistorialPageScreen.id: (context) => HistorialPageScreen()
       },
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
