@@ -1,6 +1,8 @@
 # hair_beauty
 
-A Flutter project to help my sweet heart LEV. With my all my love. JQT.
+Un proyecto para ayudar a la mujer que mas he amado a alcanzar sus sueños. LEV.
+
+Siempre tuyo. JQT.
 
 ## Getting Started
 
